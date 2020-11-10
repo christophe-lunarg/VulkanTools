@@ -120,13 +120,13 @@ before_build:
   - git --version
 
   # Update external
-  - echo Update external sources
+  - echo Update external sources %PLATFORM_ARGUMENT% %CONFIGURATION_ARGUMENT%
   - update_external_sources.bat %PLATFORM_ARGUMENT% %CONFIGURATION_ARGUMENT%
   - rm -rf ./Vulkan-Headers/build
   - rm -rf ./Vulkan-Tools/build
   - rm -rf ./Vulkan-ValidationLayers/build
 
-  - echo Build VulkanTools deps
+  - echo Build VulkanTools deps %CONFIGURATION% %PLATFORM%
   - python scripts/update_deps.py --config=%CONFIGURATION% --arch=%PLATFORM%
   - rm -rf build
   - mkdir build
