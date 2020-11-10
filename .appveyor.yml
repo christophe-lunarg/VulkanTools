@@ -102,10 +102,13 @@ install:
   # Qt
   - set PATH=%QTDIR%\bin;%PATH%
 
+  - choco install windows-sdk-10-version-1809-all
+
 before_build:
   - cmake --version
   - python --version
   - qmake --version
+  - git --version
 
   - git submodule update --init --recursive
 
