@@ -22,7 +22,7 @@ for:
   -
     matrix:
       only:
-        - configuration: Release
+        - configuration: Debug
           platform: Win32
     environment:
       PYTHON: C:\Python35
@@ -34,7 +34,7 @@ for:
   -
     matrix:
       only:
-        - configuration: Debug
+        - configuration: Release
           platform: x64
     environment:
       PYTHON: C:\Python35
@@ -42,6 +42,16 @@ for:
       PLATFORM_ARGUMENT: --64
       CONFIGURATION_ARGUMENT: --debug
       GENERATOR: Visual Studio 15 2017 Win64
+
+# Build only x64 Release and Win32(x86) Debug to reduce build time.
+# This should still provide adequate 32-bit vs 64-bit and
+# Release vs Debug coverage.
+matrix:
+  exclude:
+    - configuration: Release
+      platform: Win32
+    - configuration: Debug
+      platform: x64
 
 branches:
   only:
@@ -86,16 +96,6 @@ build:
 
 build_script:
   - cmake --build . --config %CONFIGURATION% -- /m /v:minimal
-
-# Build only x64 Release and Win32(x86) Debug to reduce build time.
-# This should still provide adequate 32-bit vs 64-bit and
-# Release vs Debug coverage.
-matrix:
-  exclude:
-    - configuration: Release
-      platform: Win32
-    - configuration: Debug
-      platform: x64
 
 test_script:
   ctest -j 16 --output-on-failure -C %CONFIGURATION%
