@@ -51,7 +51,7 @@ for:
   -
     matrix:
       only:
-        - configuration: Release
+        - configuration: Debug
           platform: x64
           image: Visual Studio 2019
     environment:
@@ -60,6 +60,36 @@ for:
       PLATFORM_ARGUMENT: --64
       CONFIGURATION_ARGUMENT: --debug
       GENERATOR: "Visual Studio 16 2019 Win64"
+
+matrix:
+  exclude:
+    - configuration: Release
+      platform: Win32
+      image: Visual Studio 2015
+    - configuration: Release
+      platform: x64
+      image: Visual Studio 2015
+    - configuration: Debug
+      platform: x64
+      image: Visual Studio 2015
+    - configuration: Release
+      platform: Win32
+      image: Visual Studio 2017
+    - configuration: Debug
+      platform: Win32
+      image: Visual Studio 2017
+    - configuration: Debug
+      platform: x64
+      image: Visual Studio 2017
+    - configuration: Release
+      platform: Win32
+      image: Visual Studio 2019
+    - configuration: Debug
+      platform: Win32
+      image: Visual Studio 2019
+    - configuration: Release
+      platform: x64
+      image: Visual Studio 2019
 
 branches:
   only:
@@ -90,7 +120,7 @@ before_build:
   - python scripts/update_deps.py --config=%CONFIGURATION% --arch=%PLATFORM%
   - mkdir build
   - cd build
-  - cmake -G %GENERATOR% -C../helper.cmake ..
+  - cmake -C../helper.cmake ..
   - echo Building platform=%PLATFORM% configuration=%CONFIGURATION%
 
   - echo Build vkconfig with Qt framework
