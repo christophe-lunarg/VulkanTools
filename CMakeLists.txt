@@ -44,6 +44,7 @@ find_package(Vulkan)
 message(STATUS "Vulkan FOUND = ${Vulkan_FOUND}")
 message(STATUS "Vulkan Include = ${Vulkan_INCLUDE_DIR}")
 message(STATUS "Vulkan Lib = ${Vulkan_LIBRARY}")
+include_directories(${Vulkan_INCLUDE_DIR})
 
 if(NOT VULKAN_HEADERS_INSTALL_DIR AND NOT DEFINED ENV{VULKAN_HEADERS_INSTALL_DIR})
     message(FATAL_ERROR "Must define location of Vulkan-Headers install -- see BUILD.md")
@@ -51,6 +52,7 @@ endif()
 
 # Cmake command line option overrides environment variable
 if(NOT VULKAN_HEADERS_INSTALL_DIR)
+    include_directories(${VULKAN_HEADERS_INSTALL_DIR})
     set(VULKAN_HEADERS_INSTALL_DIR $ENV{VULKAN_HEADERS_INSTALL_DIR})
 endif()
 message(STATUS "Using Vulkan-Headers install located at ${VULKAN_HEADERS_INSTALL_DIR}")
