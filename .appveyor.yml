@@ -109,6 +109,7 @@ before_build:
   - qmake --version
   - git --version
   - pwd
+  - ls -a
 
   # Update external
   - echo Update external sources
