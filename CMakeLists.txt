@@ -213,7 +213,7 @@ if(BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
-if(BUILD_VLF)
+if(BUILD_VLF AND NOT CMAKE_CL_64)
     add_subdirectory(layer_factory)
 endif()
 
