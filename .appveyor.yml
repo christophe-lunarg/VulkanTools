@@ -49,19 +49,19 @@ before_build:
       if ($env:PLATFORM -eq "x64") {
         $env:PATH="$env:PATH;C:\Qt\5.9.9\msvc2017_64"
         $env:generator="$env:generator Win64"
-        if ($env:CONFIGURATION == Debug) {
+        if ($env:CONFIGURATION -eq "Debug") {
           update_external_sources.bat --64 --debug
         }
-        if ($env:CONFIGURATION == Release) {
+        if ($env:CONFIGURATION -eq "Release") {
           update_external_sources.bat --64 --release
         }
       }
       if ($env:PLATFORM -eq "Win32") {
         $env:PATH="$env:PATH;C:\Qt\5.9.9\msvc2017"
-        if ($env:CONFIGURATION == Debug) {
+        if ($env:CONFIGURATION -eq "Debug") {
           update_external_sources.bat --32 --debug
         }
-        if ($env:CONFIGURATION == Release) {
+        if ($env:CONFIGURATION -eq "Release") {
           update_external_sources.bat --32 --release
         }
       }
