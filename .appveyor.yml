@@ -16,7 +16,12 @@ configuration:
   - Release
 
 image:
+  - Visual Studio 2015
+    set GENERATOR="Visual Studio 14 2015"
   - Visual Studio 2017
+    set GENERATOR="Visual Studio 15 2017"
+  - Visual Studio 2019
+    set GENERATOR="Visual Studio 16 2019"
 
 environment:
   PYTHON: "C:\\Python35"
@@ -26,7 +31,7 @@ branches:
     - master
 
 init:
-  - echo %PLATFORM% %CONFIGURATION%
+  - echo %IMAGE% %PLATFORM% %CONFIGURATION%
   - cmake --version
 
 install:
@@ -43,9 +48,6 @@ install:
   - qmake --version
 
 before_build:
-  - if %IMAGE% == "Visual Studio 2015" (set GENERATOR="Visual Studio 14 2015")
-  - if %IMAGE% == "Visual Studio 2017" (set GENERATOR="Visual Studio 15 2017")
-  - if %IMAGE% == "Visual Studio 2019" (set GENERATOR="Visual Studio 16 2019")
   - echo GENERATOR=%GENERATOR%
 
   # Update external
