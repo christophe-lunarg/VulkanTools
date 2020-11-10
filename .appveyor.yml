@@ -129,7 +129,7 @@ before_build:
   - python scripts/update_deps.py --config=%CONFIGURATION% --arch=%PLATFORM%
   - mkdir build
   - cd build
-  - cmake %CMAKE_ARGS% -C ../helper.cmake ..
+  - cmake -C ../helper.cmake ..
   - echo Building platform=%PLATFORM% configuration=%CONFIGURATION%
 
   - echo Build vkconfig with Qt framework
