@@ -72,8 +72,8 @@ before_build:
       echo generator="$env:generator"
 
       echo Build VulkanTools deps
-      python --version
-      python scripts/update_deps.py --config=$env:CONFIGURATION --arch=$env:PLATFORM
+      python3 --version
+      python3 scripts/update_deps.py --config=$env:CONFIGURATION --arch=$env:PLATFORM
       mkdir build
       cd build
       cmake -G "$env:generator" -C../helper.cmake ..
