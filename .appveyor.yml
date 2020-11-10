@@ -38,7 +38,8 @@ for:
       PLATFORM_ARGUMENT: --32
       CONFIGURATION_ARGUMENT: --debug
     init:
-      - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvars32.bat"
+      # For building vkconfig with qmake
+      - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat"
 
   -
     matrix:
@@ -52,6 +53,7 @@ for:
       PLATFORM_ARGUMENT: --64
       CONFIGURATION_ARGUMENT: --release
     init:
+      # For building vkconfig with qmake
       - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
 
   -
@@ -66,6 +68,7 @@ for:
       PLATFORM_ARGUMENT: --64
       CONFIGURATION_ARGUMENT: --debug
     init:
+      # For building vkconfig with qmake
       - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 
 matrix:
@@ -129,7 +132,6 @@ before_build:
 
   #- echo Build vkconfig with Qt framework
   # Visual Studio command line https://docs.microsoft.com/fr-fr/cpp/build/building-on-the-command-line?view=msvc-160
-  #- "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat"
   #- cd ../vkconfig
   #- qmake vkconfig.pro
   #- nmake
