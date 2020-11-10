@@ -25,7 +25,7 @@ environment:
   PYTHON_VERSION: 3.5
   PYTHON_ARCH: 32
 
-  only:
+only:
     - master
 
 init:
