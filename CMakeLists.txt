@@ -151,7 +151,16 @@ endif()
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH};${VULKAN_LOADER_INSTALL_DIR};${VULKAN_HEADERS_INSTALL_DIR};$ENV{VULKAN_LOADER_INSTALL_DIR};$ENV{VULKAN_HEADERS_INSTALL_DIR})
 find_package(Vulkan)
 
-if (CMAKE_SYSTEM_NAME STREQUAL "Windows" OR
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows" and CMAKE_CL_64)
+    option(BUILD_TESTS "Build tests" ON)
+    option(BUILD_LAYERSVT "Build layersvt" ON)
+    option(BUILD_VLF "Build layer_factory" OFF)
+    option(BUILD_DEMOS OFF)
+    option(BUILD_VIA "Build via" ON)
+
+    option(BUILD_LAYERMGR "Build Vulkan Configurator" ON)
+
+else if (CMAKE_SYSTEM_NAME STREQUAL "Windows" OR
     CMAKE_SYSTEM_NAME STREQUAL "Linux" OR
     CMAKE_SYSTEM_NAME MATCHES "BSD")
 
@@ -160,7 +169,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows" OR
     option(BUILD_VLF "Build layer_factory" ON)
     option(BUILD_VIA "Build via" ON)
 
-    option(BUILD_LAYERMGR "Build layer manager" ON)
+    option(BUILD_LAYERMGR "Build Vulkan Configurator" ON)
 
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     
@@ -172,7 +181,7 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     option(BUILD_DEMOS OFF)
     option(BUILD_VKJSON OFF)
     option(BUILD_VIA "Build VIA" ON)
-    option(BUILD_LAYERMGR "Build layer manager" ON)
+    option(BUILD_LAYERMGR "Build Vulkan Configurator" ON)
 
 endif()
 
@@ -213,7 +222,7 @@ if(BUILD_TESTS)
     add_subdirectory(tests)
 endif()
 
-if(BUILD_VLF AND NOT CMAKE_CL_64)
+if(BUILD_VLF)
     add_subdirectory(layer_factory)
 endif()
 
