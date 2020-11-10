@@ -61,21 +61,6 @@ for:
       CONFIGURATION_ARGUMENT: --debug
       GENERATOR: "Visual Studio 16 2019 Win64"
 
-# Build only x64 Release and Win32(x86) Debug to reduce build time.
-# This should still provide adequate 32-bit vs 64-bit and
-# Release vs Debug coverage.
-matrix:
-  only:
-    - configuration: Debug
-      platform: Win32
-      image: Visual Studio 2015
-    - configuration: Release
-      platform: x64
-      image: Visual Studio 2017
-    - configuration: Debug
-      platform: x64
-      image: Visual Studio 2019
-
 branches:
   only:
     - master
