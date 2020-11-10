@@ -16,9 +16,7 @@ configuration:
   - Release
 
 image:
-  - Visual Studio 2015
   - Visual Studio 2017
-  - Visual Studio 2019
 
 environment:
   PYTHON: "C:\\Python35"
@@ -40,7 +38,7 @@ install:
   # Qt
   - if %PLATFORM% == x64 (set QTDIR=C:\Qt\5.9.9\msvc2017_64)
   - if %PLATFORM% == Win32 (set QTDIR=C:\Qt\5.9.9\msvc2017)
-  - set PATH=%PATH%;%QTDIR%\bin
+  - set PATH=%QTDIR%\bin;%PATH%
   - echo %PATH%
   - qmake --version
 
