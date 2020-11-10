@@ -125,6 +125,7 @@ before_build:
   
   - echo Build VulkanTools deps
   - python scripts/update_deps.py --config=%CONFIGURATION% --arch=%PLATFORM%
+  - rm -rf build
   - mkdir build
   - cd build
   - cmake -C ../helper.cmake ..
