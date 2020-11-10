@@ -24,24 +24,24 @@ for:
       only:
         - configuration: Release
           platform: Win32
-      environment:
-        PYTHON: C:\Python35
-        QTDIR: C:\Qt\5.9.9\msvc2015
-        PLATFORM_ARGUMENT: --32
-        CONFIGURATION_ARGUMENT: --debug
-        GENERATOR: Visual Studio 15 2017
+    environment:
+      PYTHON: C:\Python35
+      QTDIR: C:\Qt\5.9.9\msvc2015
+      PLATFORM_ARGUMENT: --32
+      CONFIGURATION_ARGUMENT: --debug
+      GENERATOR: Visual Studio 15 2017
 
   -
     matrix:
       only:
         - configuration: Debug
           platform: x64
-      environment:
-        PYTHON: C:\Python35
-        QTDIR: C:\Qt\5.9.9\msvc2017_64
-        PLATFORM_ARGUMENT: --64
-        CONFIGURATION_ARGUMENT: --debug
-        GENERATOR: Visual Studio 15 2017 Win64
+    environment:
+      PYTHON: C:\Python35
+      QTDIR: C:\Qt\5.9.9\msvc2017_64
+      PLATFORM_ARGUMENT: --64
+      CONFIGURATION_ARGUMENT: --debug
+      GENERATOR: Visual Studio 15 2017 Win64
 
 branches:
   only:
