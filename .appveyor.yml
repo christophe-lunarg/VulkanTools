@@ -21,7 +21,7 @@ image:
   - Visual Studio 2019
 
 environment:
-  TOXENV: py35
+  PYTHON: "C:\\Python35"
 
 branches:
   only:
@@ -29,6 +29,8 @@ branches:
 
 before_build:
   - ps: |
+      $env:PATH="$env:PATH;C:\\Python35" 
+
       if ("$env:APPVEYOR_JOB_NAME" -match "Image: Visual Studio 2013") {
           $env:generator="Visual Studio 12 2013"
       } 
