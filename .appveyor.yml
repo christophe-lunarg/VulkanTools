@@ -93,7 +93,7 @@ branches:
     - master
 
 init:
-  - echo %IMAGE% %PLATFORM% %CONFIGURATION%
+  - echo %PLATFORM% %CONFIGURATION%
 
 install:
   # Python
@@ -105,12 +105,12 @@ install:
   - choco install windows-sdk-10-version-1809-all
 
 before_build:
+  - echo %IMAGE%
   - cmake --version
   - python --version
   - qmake --version
   - git --version
-
-  - git submodule update --init --recursive
+  - pwd
 
   - echo GENERATOR=%GENERATOR%
 
