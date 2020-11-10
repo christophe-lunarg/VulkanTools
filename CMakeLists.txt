@@ -151,12 +151,11 @@ endif()
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH};${VULKAN_LOADER_INSTALL_DIR};${VULKAN_HEADERS_INSTALL_DIR};$ENV{VULKAN_LOADER_INSTALL_DIR};$ENV{VULKAN_HEADERS_INSTALL_DIR})
 find_package(Vulkan)
 
-# Skip some build with VS 2017
-if (MSVC_TOOLSET_VERSION STREQUAL "141")
+# Full build with VS 2015
+if (MSVC_TOOLSET_VERSION EQUAL 140)
     option(BUILD_TESTS "Build tests" ON)
     option(BUILD_LAYERSVT "Build layersvt" ON)
-    option(BUILD_VLF "Build layer_factory" OFF)
-    option(BUILD_DEMOS OFF)
+    option(BUILD_VLF "Build layer_factory" ON)
     option(BUILD_VIA "Build via" ON)
 
     option(BUILD_LAYERMGR "Build Vulkan Configurator" ON)
@@ -167,13 +166,13 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows" OR
 
     option(BUILD_TESTS "Build tests" ON)
     option(BUILD_LAYERSVT "Build layersvt" ON)
-    option(BUILD_VLF "Build layer_factory" ON)
+    option(BUILD_VLF "Build layer_factory" OFF)
+    option(BUILD_DEMOS OFF)
     option(BUILD_VIA "Build via" ON)
 
     option(BUILD_LAYERMGR "Build Vulkan Configurator" ON)
 
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    
     option(BUILD_LOADER OFF)
     option(BUILD_TESTS OFF)
     option(BUILD_LAYERS OFF)
