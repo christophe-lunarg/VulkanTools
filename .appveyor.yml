@@ -33,6 +33,9 @@ init:
 install:
   - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
   - python --version
+  - if %PLATFORM% == x64 (set QTDIR=C:\Qt\5.9.9\msvc2017_64)
+  - if %PLATFORM% == Win32 (set QTDIR=C:\Qt\5.9.9\msvc2017)
+  - set PATH=%PATH%;%QTDIR%\bin
 
 before_build:
   - ps: |
@@ -53,7 +56,6 @@ before_build:
 
       echo Update external sources
       if ($env:PLATFORM -eq "x64") {
-        $env:PATH="$env:PATH;C:\Qt\5.9.9\msvc2017_64"
         $env:generator="$env:generator Win64"
         if ($env:CONFIGURATION -eq "Debug") {
           ./update_external_sources.sh --64 --debug
@@ -63,7 +65,6 @@ before_build:
         }
       }
       if ($env:PLATFORM -eq "Win32") {
-        $env:PATH="$env:PATH;C:\Qt\5.9.9\msvc2017"
         if ($env:CONFIGURATION -eq "Debug") {
           ./update_external_sources.sh --32 --debug
         }
