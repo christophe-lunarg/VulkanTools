@@ -126,12 +126,12 @@ before_build:
   - cmake -C../helper.cmake ..
   - echo Building platform=%PLATFORM% configuration=%CONFIGURATION%
 
-  - echo Build vkconfig with Qt framework
+  #- echo Build vkconfig with Qt framework
   # Visual Studio command line https://docs.microsoft.com/fr-fr/cpp/build/building-on-the-command-line?view=msvc-160
-  - "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat"
-  - cd ../vkconfig
-  - qmake vkconfig.pro
-  - nmake
+  #- "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\vcvars32.bat"
+  #- cd ../vkconfig
+  #- qmake vkconfig.pro
+  #- nmake
 
 build:
   parallel: true
