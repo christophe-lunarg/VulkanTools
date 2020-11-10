@@ -133,21 +133,19 @@ before_build:
   - mkdir build
   - cd build
   - cmake -C ../helper.cmake ..
-  - echo Building platform=%PLATFORM% configuration=%CONFIGURATION%
-
-  - echo Build Vulkan Configurator with Qt build system
-  - cd ../vkconfig
-  - qmake vkconfig.pro
-  - nmake
 
 build:
   parallel: true
   verbosity: quiet
 
 build_script:
+  - echo Building platform=%PLATFORM% configuration=%CONFIGURATION%
+  - echo Build Vulkan Configurator with cmake
   - cmake --build . --config %CONFIGURATION% -- /m /v:minimal
+  - echo Build Vulkan Configurator with Qt build system
+  - cd ../vkconfig
+  - qmake vkconfig.pro
+  - nmake
 
 test_script:
   ctest -j 16 --output-on-failure -C %CONFIGURATION%
-
-deploy: off
