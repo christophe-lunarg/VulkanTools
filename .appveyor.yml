@@ -22,14 +22,18 @@ image:
 
 environment:
   PYTHON: "C:\\Python35"
+  PYTHON_VERSION: 3.5
+  PYTHON_ARCH: 32
 
-branches:
   only:
     - master
 
+init:
+  - echo %PLATFORM% %CONFIGURATION% %PYTHON%
+
 before_build:
   - ps: |
-      $env:PATH="$env:PATH;C:\\Python35" 
+      $env:PATH="$env:PATH;$env:PYTHON" 
 
       if ("$env:APPVEYOR_JOB_NAME" -match "Image: Visual Studio 2013") {
           $env:generator="Visual Studio 12 2013"
@@ -67,6 +71,7 @@ before_build:
       echo generator="$env:generator"
 
       echo Build VulkanTools deps
+      python --version
       python scripts/update_deps.py --config=$env:CONFIGURATION --arch=$env:PLATFORM
       mkdir build
       cd build
