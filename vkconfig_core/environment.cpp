@@ -284,7 +284,6 @@ bool Environment::LoadApplications() {
         file.close();
 
         const QJsonDocument& json_doc = QJsonDocument::fromJson(data.toLocal8Bit());
-        assert(json_doc.isObject());
         assert(!json_doc.isEmpty());
 
         // Get the list of apps
