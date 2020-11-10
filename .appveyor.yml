@@ -49,20 +49,19 @@ branches:
 
 init:
   - echo %IMAGE% %PLATFORM% %CONFIGURATION%
-  - cmake --version
 
 install:
   # Python
   - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
-  - echo %PATH%
-  - python --version
 
   # Qt
   - set PATH=%QTDIR%\bin;%PATH%
-  - echo %PATH%
-  - qmake --version
 
 before_build:
+  - cmake --version
+  - python --version
+  - qmake --version
+
   - echo GENERATOR=%GENERATOR%
 
   # Update external
