@@ -106,9 +106,6 @@ install:
   # Qt
   - set PATH=%QTDIR%\bin;%PATH%
 
-  # Visual Studio command line https://docs.microsoft.com/fr-fr/cpp/build/building-on-the-command-line?view=msvc-160
-  - vcvarsall.bat
-
 before_build:
   - echo %IMAGE%
   - cmake --version
@@ -117,6 +114,9 @@ before_build:
   - git --version
   - pwd
   - ls -a
+
+  # Visual Studio command line https://docs.microsoft.com/fr-fr/cpp/build/building-on-the-command-line?view=msvc-160
+  - vcvarsall.bat
 
   # Update external
   - echo Update external sources
