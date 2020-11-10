@@ -29,7 +29,7 @@ for:
       QTDIR: C:\Qt\5.9.9\msvc2015
       PLATFORM_ARGUMENT: --32
       CONFIGURATION_ARGUMENT: --debug
-      GENERATOR: Visual Studio 15 2017
+      GENERATOR: "Visual Studio 15 2017"
 
   -
     matrix:
@@ -41,7 +41,7 @@ for:
       QTDIR: C:\Qt\5.9.9\msvc2017_64
       PLATFORM_ARGUMENT: --64
       CONFIGURATION_ARGUMENT: --debug
-      GENERATOR: Visual Studio 15 2017 Win64
+      GENERATOR: "Visual Studio 15 2017 Win64"
 
 # Build only x64 Release and Win32(x86) Debug to reduce build time.
 # This should still provide adequate 32-bit vs 64-bit and
