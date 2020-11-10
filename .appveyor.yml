@@ -112,11 +112,9 @@ before_build:
   - git --version
   - pwd
 
-  - echo GENERATOR=%GENERATOR%
-
   # Update external
   - echo Update external sources
-  - update_external_sources.bat %PLATFORM_ARGUMENT% %CONFIGURATION_ARGUMENT%
+  - sh update_external_sources.sh %PLATFORM_ARGUMENT% %CONFIGURATION_ARGUMENT%
   
   - echo Build VulkanTools deps
   - python scripts/update_deps.py --config=%CONFIGURATION% --arch=%PLATFORM%
