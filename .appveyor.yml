@@ -9,19 +9,25 @@ shallow_clone: true
 
 platform:
   - Win32
+    platform_argument: "--32"
+    qt_dir: "C:\Qt\5.9.9\msvc2015"
   - x64
+    platform_argument: "--64"
+    qt_dir: "C:\Qt\5.9.9\msvc2017_64"
 
 configuration:
   - Debug
+    configuration_argument: "--debug"
   - Release
+    configuration_argument: "--release"
 
 image:
   - Visual Studio 2015
-    set GENERATOR="Visual Studio 14 2015"
+    generator: "Visual Studio 14 2015"
   - Visual Studio 2017
-    set GENERATOR="Visual Studio 15 2017"
+    generator: "Visual Studio 15 2017"
   - Visual Studio 2019
-    set GENERATOR="Visual Studio 16 2019"
+    generator: "Visual Studio 16 2019"
 
 environment:
   PYTHON: "C:\\Python35"
@@ -41,8 +47,6 @@ install:
   - python --version
 
   # Qt
-  - if %PLATFORM% == x64 (set QTDIR=C:\Qt\5.9.9\msvc2017_64)
-  - if %PLATFORM% == Win32 (set QTDIR=C:\Qt\5.9.9\msvc2015)
   - set PATH=%QTDIR%\bin;%PATH%
   - echo %PATH%
   - qmake --version
@@ -52,10 +56,7 @@ before_build:
 
   # Update external
   - echo Update external sources
-  - if %PLATFORM% == Win32 (if %CONFIGURATION% == Debug (update_external_sources.bat --32 --debug))
-  - if %PLATFORM% == Win32 (if %CONFIGURATION% == Release (update_external_sources.bat --32 --release))
-  - if %PLATFORM% == x64 (if %CONFIGURATION% == Debug (update_external_sources.bat --64 --debug))
-  - if %PLATFORM% == x64 (if %CONFIGURATION% == Release (update_external_sources.bat --64 --release))
+  - update_external_sources.bat %PLATFORM_ARGUMENT% %CONFIGURATION_ARGUMENT%
   
   - echo Build VulkanTools deps
   - python scripts/update_deps.py --config=%CONFIGURATION% --arch=%PLATFORM%
