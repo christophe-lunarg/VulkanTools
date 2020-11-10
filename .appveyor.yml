@@ -33,7 +33,6 @@ for:
       QTDIR: C:\Qt\5.9.9\msvc2015
       PLATFORM_ARGUMENT: --32
       CONFIGURATION_ARGUMENT: --debug
-      GENERATOR: "Visual Studio 14 2015"
 
   -
     matrix:
@@ -46,7 +45,6 @@ for:
       QTDIR: C:\Qt\5.9.9\msvc2017_64
       PLATFORM_ARGUMENT: --64
       CONFIGURATION_ARGUMENT: --release
-      GENERATOR: "Visual Studio 15 2017 Win64"
 
   -
     matrix:
@@ -59,7 +57,6 @@ for:
       QTDIR: C:\Qt\5.15.1\msvc2019_64
       PLATFORM_ARGUMENT: --64
       CONFIGURATION_ARGUMENT: --debug
-      GENERATOR: "Visual Studio 16 2019 Win64"
 
 matrix:
   exclude:
@@ -109,6 +106,8 @@ before_build:
   - cmake --version
   - python --version
   - qmake --version
+
+  - git submodule update --init --recursive
 
   - echo GENERATOR=%GENERATOR%
 
