@@ -110,6 +110,7 @@ install:
   - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
 
   # Qt
+  - echo Qt path %QTDIR%\bin
   - set PATH=%QTDIR%\bin;%PATH%
 
 before_build:
@@ -134,11 +135,10 @@ before_build:
   - cmake -C ../helper.cmake ..
   - echo Building platform=%PLATFORM% configuration=%CONFIGURATION%
 
-  #- echo Build vkconfig with Qt framework
-  # Visual Studio command line https://docs.microsoft.com/fr-fr/cpp/build/building-on-the-command-line?view=msvc-160
-  #- cd ../vkconfig
-  #- qmake vkconfig.pro
-  #- nmake
+  - echo Build Vulkan Configurator with Qt build system
+  - cd ../vkconfig
+  - qmake vkconfig.pro
+  - nmake
 
 build:
   parallel: true
