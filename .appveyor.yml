@@ -38,8 +38,7 @@ for:
       PLATFORM_ARGUMENT: --32
       CONFIGURATION_ARGUMENT: --debug
     init:
-      - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
-      - set CMAKE_ARGS="-G Visual Studio 14 2015"
+      - call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvars32.bat"
 
   -
     matrix:
@@ -54,7 +53,6 @@ for:
       CONFIGURATION_ARGUMENT: --release
     init:
       - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-      - set CMAKE_ARGS="-G Visual Studio 15 2017 Win64"
 
   -
     matrix:
@@ -69,7 +67,6 @@ for:
       CONFIGURATION_ARGUMENT: --debug
     init:
       - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
-      - set CMAKE_ARGS="-G Visual Studio 16 2019 -A x64"
 
 matrix:
   exclude:
@@ -118,8 +115,6 @@ before_build:
   - python --version
   - qmake --version
   - git --version
-  - pwd
-  - ls -a
 
   # Update external
   - echo Update external sources
