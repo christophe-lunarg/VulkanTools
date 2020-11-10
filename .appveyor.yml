@@ -21,16 +21,18 @@ image:
   - Visual Studio 2019
 
 environment:
-  PYTHON: "C:\\Python35"
-  PYTHON_VERSION: 3.5
-  PYTHON_ARCH: 32
+  - PYTHON: "C:\\Python35"
 
 branches:
   only:
     - master
 
 init:
-  - echo %PLATFORM% %CONFIGURATION% %PYTHON%
+  - echo %PLATFORM% %CONFIGURATION%
+
+install:
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - python --version
 
 before_build:
   - ps: |
@@ -72,8 +74,7 @@ before_build:
       echo generator="$env:generator"
 
       echo Build VulkanTools deps
-      python3 --version
-      python3 scripts/update_deps.py --config=$env:CONFIGURATION --arch=$env:PLATFORM
+      python scripts/update_deps.py --config=$env:CONFIGURATION --arch=$env:PLATFORM
       mkdir build
       cd build
       cmake -G "$env:generator" -C../helper.cmake ..
