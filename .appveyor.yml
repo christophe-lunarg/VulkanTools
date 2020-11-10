@@ -5,7 +5,11 @@
 # This version starts a separte job for each platform config
 # in order to get around the AppVeyor limit of 60 mins per job.
 
-shallow_clone: true
+# build version format
+version: "{build}"
+
+# Free accounts have a max of 1, but ask anyway.
+max_jobs: 4
 
 platform:
   - Win32
