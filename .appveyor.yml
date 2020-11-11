@@ -141,7 +141,7 @@ build:
 build_script:
   - echo Building platform=%PLATFORM% configuration=%CONFIGURATION%
   - echo Build Vulkan Configurator with cmake
-  - cmake -A %PLATFORM% --build . --config %CONFIGURATION% -- /m /v:minimal
+  - cmake -A %PLATFORM% --build . --config %CONFIGURATION%
   #- echo Build Vulkan Configurator with Qt build system
   #- cd ../vkconfig
   #- qmake vkconfig.pro
