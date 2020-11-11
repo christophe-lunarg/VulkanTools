@@ -128,7 +128,7 @@ before_build:
   - rm -rf ./Vulkan-ValidationLayers/build
 
   - echo Build VulkanTools deps %CONFIGURATION% %PLATFORM%
-  - python scripts/update_deps.py --config=%CONFIGURATION% --arch=%PLATFORM%
+  - python scripts/update_deps.py --config %CONFIGURATION% --arch %PLATFORM%
   - rm -rf build
   - mkdir build
   - cd build

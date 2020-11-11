@@ -151,23 +151,13 @@ endif()
 set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH};${VULKAN_LOADER_INSTALL_DIR};${VULKAN_HEADERS_INSTALL_DIR};$ENV{VULKAN_LOADER_INSTALL_DIR};$ENV{VULKAN_HEADERS_INSTALL_DIR})
 find_package(Vulkan)
 
-# Full build with VS 2015
-if (MSVC_TOOLSET_VERSION EQUAL 140 OR
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows" OR
     CMAKE_SYSTEM_NAME STREQUAL "Linux" OR
     CMAKE_SYSTEM_NAME MATCHES "BSD")
 
     option(BUILD_TESTS "Build tests" ON)
     option(BUILD_LAYERSVT "Build layersvt" ON)
     option(BUILD_VLF "Build layer_factory" ON)
-    option(BUILD_VIA "Build via" ON)
-
-    option(BUILD_LAYERMGR "Build Vulkan Configurator" ON)
-
-elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    option(BUILD_TESTS "Build tests" OFF)
-    option(BUILD_LAYERSVT "Build layersvt" OFF)
-    option(BUILD_VLF "Build layer_factory" OFF)
-    option(BUILD_DEMOS OFF)
     option(BUILD_VIA "Build via" ON)
 
     option(BUILD_LAYERMGR "Build Vulkan Configurator" ON)
