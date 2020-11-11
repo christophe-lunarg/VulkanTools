@@ -132,7 +132,7 @@ before_build:
   - rm -rf build
   - mkdir build
   - cd build
-  - cmake -C ../helper.cmake ..
+  - cmake -A %PLATFORM% -C ../helper.cmake ..
 
 build:
   parallel: true
@@ -141,7 +141,7 @@ build:
 build_script:
   - echo Building platform=%PLATFORM% configuration=%CONFIGURATION%
   - echo Build Vulkan Configurator with cmake
-  - cmake -A %PLATFORM% --build . --config %CONFIGURATION%
+  - cmake --build . --config %CONFIGURATION%
   #- echo Build Vulkan Configurator with Qt build system
   #- cd ../vkconfig
   #- qmake vkconfig.pro
