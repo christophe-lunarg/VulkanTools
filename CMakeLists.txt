@@ -44,6 +44,7 @@ find_package(Vulkan)
 message(STATUS "Vulkan FOUND = ${Vulkan_FOUND}")
 message(STATUS "Vulkan Include = ${Vulkan_INCLUDE_DIR}")
 message(STATUS "Vulkan Lib = ${Vulkan_LIBRARY}")
+include_directories(${Vulkan_INCLUDE_DIR})
 
 if(NOT VULKAN_HEADERS_INSTALL_DIR AND NOT DEFINED ENV{VULKAN_HEADERS_INSTALL_DIR})
     message(FATAL_ERROR "Must define location of Vulkan-Headers install -- see BUILD.md")
@@ -51,6 +52,7 @@ endif()
 
 # Cmake command line option overrides environment variable
 if(NOT VULKAN_HEADERS_INSTALL_DIR)
+    include_directories(${VULKAN_HEADERS_INSTALL_DIR})
     set(VULKAN_HEADERS_INSTALL_DIR $ENV{VULKAN_HEADERS_INSTALL_DIR})
 endif()
 message(STATUS "Using Vulkan-Headers install located at ${VULKAN_HEADERS_INSTALL_DIR}")
@@ -158,10 +160,9 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Windows" OR
     option(BUILD_VLF "Build layer_factory" ON)
     option(BUILD_VIA "Build via" ON)
 
-    option(BUILD_LAYERMGR "Build layer manager" ON)
+    option(BUILD_LAYERMGR "Build Vulkan Configurator" ON)
 
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    
     option(BUILD_LOADER OFF)
     option(BUILD_TESTS OFF)
     option(BUILD_LAYERS OFF)
@@ -170,7 +171,7 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     option(BUILD_DEMOS OFF)
     option(BUILD_VKJSON OFF)
     option(BUILD_VIA "Build VIA" ON)
-    option(BUILD_LAYERMGR "Build layer manager" ON)
+    option(BUILD_LAYERMGR "Build Vulkan Configurator" ON)
 
 endif()
 
