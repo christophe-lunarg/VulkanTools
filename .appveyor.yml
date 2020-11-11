@@ -138,12 +138,12 @@ build_script:
   - echo Building platform=%PLATFORM% configuration=%CONFIGURATION%
 
   - echo Build Vulkan Configurator with Qt build system
-  - cd ./vkconfig
+  - cd ../vkconfig
   - qmake vkconfig.pro
   - nmake /NOLOGO /S
 
   - echo Build Vulkan Configurator with cmake
-  - cd ..
+  - cd ../build
   - cmake --build . --config %CONFIGURATION% -- /m /v:minimal
 
 test_script:
